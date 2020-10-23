@@ -19,6 +19,17 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - name: Send mail
+        if: failure()
+        uses: dawidd6/action-send-mail@v2
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: sunilbadboy24@gmail.com
+          password: 9441611842
+          subject: Github Actions job result
+          body: Build job of ${{github.repository}} Failed!
+          to: anupkumar99999999@gmail.com
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
